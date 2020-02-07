@@ -14,57 +14,45 @@ describe('camella-homepage', () => {
     });
 
     it('should verify the homepage title page', async () => {
-      await page.waitForSelector('#inner-page-navigation');
+      await page.waitForXPath("//div[@id='dialog']");
       expect(await page.title()).toBe('Camella | House and Lot Developer Philippines | Official Website | Camella');     
     });
 
-    it('should verify contact numbers in header', async () => {
-        await page.waitForSelector('#inner-page-header-top');
-        let contactNumber = await page.$eval('#inner-page-header-top > div > div.col-xs-6.col-md-3 > span', (cn) => {
-            return cn.innerText;
-        });
-        expect(contactNumber).toBe('(02) 226 3552 LOCAL 0501| 0926 915 9138');
-    });
 
     it('should verify camella fb url', async () => {
-        let fbURL = await page.$eval('#inner-page-header-top > div > div.col-md-offset-2.col-md-7.text-right > span > a:nth-child(1)', (fb) => {
+        
+        let fbURL = await page.$eval("body.ng-scope:nth-child(2) div.header-top div:nth-child(1) div.container div.col-md-offset-2.col-md-6.text-right span:nth-child(1) > a:nth-child(1)", (fb) => {
             return fb.href;
         });
-        expect(fbURL).toBe('http://www.facebook.com/CamellaOfficial');
+        expect(fbURL).toBe('https://www.facebook.com/CamellaOfficial');
     });
 
-    it('should verify camella youtube url', async () => {
-        let ytURL = await page.$eval('#inner-page-header-top > div > div.col-md-offset-2.col-md-7.text-right > span > a:nth-child(2)', (yt) => {
-            return yt.href;
-        });
-        expect(ytURL).toBe('http://www.youtube.com/c/CamellaOfficial');
-    });
 
     it('should verify camella instagram url', async () => {
-        let igURL = await page.$eval('#inner-page-header-top > div > div.col-md-offset-2.col-md-7.text-right > span > a:nth-child(3)', (ig) => {
+        let igURL = await page.$eval("body.ng-scope:nth-child(2) div.header-top div:nth-child(1) div.container div.col-md-offset-2.col-md-6.text-right span:nth-child(1) > a:nth-child(2)", (ig) => {
             return ig.href;
         });
-        expect(igURL).toBe('http://www.instagram.com/CamellaOfficial');
+        expect(igURL).toBe('https://www.instagram.com/camellaofficial/');
     });
 
     it('should verify camella twitter url', async () => {
-        let twitterURL = await page.$eval('#inner-page-header-top > div > div.col-md-offset-2.col-md-7.text-right > span > a:nth-child(4)', (twitter) => {
+        let twitterURL = await page.$eval("body.ng-scope:nth-child(2) div.header-top div:nth-child(1) div.container div.col-md-offset-2.col-md-6.text-right span:nth-child(1) > a:nth-child(3)", (twitter) => {
             return twitter.href;
         });
-        expect(twitterURL).toBe('http://www.twitter.com/CamellaOfficial');
+        expect(twitterURL).toBe('https://www.twitter.com/CamellaOfficial');
     });
 
     it('should verify camella linkedin url', async () => {
-        let linkedInURL = await page.$eval('#inner-page-header-top > div > div.col-md-offset-2.col-md-7.text-right > span > a:nth-child(5)', (li) => {
+        let linkedInURL = await page.$eval("body.ng-scope:nth-child(2) div.header-top div:nth-child(1) div.container div.col-md-offset-2.col-md-6.text-right span:nth-child(1) > a:nth-child(5)", (li) => {
             return li.href;
         });
         expect(linkedInURL).toBe('https://www.linkedin.com/company/camella');
     });
 
-    it('should verify camella linkedin url', async () => {
-        let linkedInURL = await page.$eval('#inner-page-header-top > div > div.col-md-offset-2.col-md-7.text-right > span > a:nth-child(6)', (li) => {
-            return li.href;
+    it('should verify camella messenger url', async () => {
+        let messengerURL = await page.$eval("body.ng-scope:nth-child(2) div.header-top div:nth-child(1) div.container div.col-md-offset-2.col-md-6.text-right span:nth-child(1) > a:nth-child(6)", (messenger) => {
+            return messenger.href;
         });
-        expect(linkedInURL).toBe('http://m.me/CamellaOfficial');
+        expect(messengerURL).toBe('https://m.me/CamellaOfficial');
     });
 });

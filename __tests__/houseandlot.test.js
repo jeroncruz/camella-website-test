@@ -1,4 +1,4 @@
-const timeout = 20000;
+const timeout = 30000;
 
 describe('camella-houseandlot', () => {
     let page;
@@ -14,9 +14,11 @@ describe('camella-houseandlot', () => {
     });
 
     it('should navigate to house and lot page', async () => {
-      await page.waitForSelector('#inner-page-navigation');
-      await page.click('#myNavbar > div > div.col-md-8.nav-col > ul > li:nth-child(2) > a');
-      await page.waitForSelector('#properties-house-catalogue');
-      expect(await page.url()).toBe('https://www.camella.com.ph/properties/house-and-lot');     
+        await page.waitForXPath("//div[@id='dialog']");
+        await page.click("button[id='close']");
+        await page.waitForXPath("//a[contains(text(),'House Models')]");
+        await page.click("#myNavbar > div > div.col-md-8.nav-col > ul > li:nth-child(2) > a");
+        await page.waitForXPath("//h3[@class='header']");
+        expect(await page.url()).toBe('https://www.camella.com.ph/properties/house-and-lot');     
     });
 });

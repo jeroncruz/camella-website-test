@@ -25,7 +25,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
 		    }
 
 	  async teardown() {
-		      console.log(chalk.yellow('Teardown Test Environment.'))
+		      console.log(chalk.yellow('\nTeardown Test Environment.'))
 		      await super.teardown()
 		    }
 

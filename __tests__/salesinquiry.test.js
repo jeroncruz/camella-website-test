@@ -1,4 +1,4 @@
-const timeout = 20000;
+const timeout = 30000;
 
 describe('camella-salesinquiry', () => {
     let page;
@@ -14,9 +14,12 @@ describe('camella-salesinquiry', () => {
     });
 
     it('should navigate to sales inquiry page', async () => {
-      await page.waitForSelector('#inner-page-navigation');
-      await page.click('#myNavbar > div > div.col-md-8.nav-col > ul > li:nth-child(5) > a');
-      await page.waitForSelector('#proposals');
-      expect(await page.url()).toBe('https://www.camella.com.ph/inquiries/sales');     
-    });
+
+        await page.waitForXPath("//div[@id='dialog']");
+        await page.click("button[id='close']");
+        await page.waitForXPath("//a[contains(text(),'Inquire Now')]");
+        await page.click("#myNavbar > div > div.col-md-8.nav-col > ul > li.active.inquire_now > a");
+        await page.waitForXPath("//li[@class='active']//a[contains(text(),'Sales Inquiry')]");
+        expect(await page.url()).toBe('https://www.camella.com.ph/inquiries/sales');     
+    }, 10000);
 });

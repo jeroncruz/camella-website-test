@@ -12,6 +12,7 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "jest": "^24.1.0",
+    "micromatch": "^3.1.10",
     "puppeteer": "^1.12.2",
     "rimraf": "^2.6.3"
   }
